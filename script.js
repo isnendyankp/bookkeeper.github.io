@@ -36,6 +36,24 @@ function validate(nameValue, urlValue) {
   return true;
 }
 
+// Fetch bookmarks
+function fetchBookmarks() {
+  // Get bookmarks from localStorage if available
+  if (localStorage.getItem('bookmarks')) {
+    bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
+  } else {
+    // Create bookmarks array in localStorage
+    bookmarks = [
+      {
+        name: 'Nendy Github',
+        url: 'https://github.com/isnendyankp',
+      },
+    ];
+    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+  }
+  console.log(bookmarks);
+}
+
 // Handle Data from Form
 function storeBookmark(e) {
     e.preventDefault();
@@ -55,9 +73,10 @@ function storeBookmark(e) {
         url: urlValue,
     };
     bookmarks.push(bookmark);
-    console.log(JSON.stringify(bookmarks));
     // Set bookmarks in localStorage
     localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+    // call Fetch bookmarks function
+    fetchBookmarks();
     // Reset
     bookmarkForm.reset();
     websiteNameEl.focus();
@@ -65,3 +84,6 @@ function storeBookmark(e) {
 
 // Event Listener
 bookmarkForm.addEventListener('submit', storeBookmark);
+
+// call Fetch Bookmarks when first load the project
+fetchBookmarks();
