@@ -55,9 +55,9 @@ function storeBookmark(e) {
         url: urlValue,
     };
     bookmarks.push(bookmark);
-    console.log(bookmarks);
+    console.log(JSON.stringify(bookmarks));
     // Set bookmarks in localStorage
-    localStorage.setItem('bookmarks', bookmarks);
+    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
     // Reset
     bookmarkForm.reset();
     websiteNameEl.focus();
