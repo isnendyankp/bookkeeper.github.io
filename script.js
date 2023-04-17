@@ -41,7 +41,13 @@ function buildBookmarks() {
     // Build Items
     bookmarks.forEach((bookmark) => {
         const { name, url } = bookmark;
-        console.log (name, url);
+        // Item
+        const item = document.createElement('div');
+        // Close Icon
+        const closeIcon = document.createElement('i');
+        closeIcon.classList.add('fas', 'fa-times');
+        closeIcon.setAttribute('title', 'Delete Bookmark');
+        closeIcon.setAttribute('onclick', `deleteBookmark('${url}')`);
     });
 }
 
