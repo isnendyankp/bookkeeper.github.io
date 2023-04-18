@@ -93,6 +93,9 @@ function deleteBookmark(url) {
       bookmarks.splice(i, 1);
     }
   });
+  // Update bookmarks array in localStorage, re-populate DOM
+  localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+  fetchBookmarks();
 }
 
 // Handle Data from Form
